@@ -71,20 +71,7 @@ for doc in docLabels_1:
 
     i = i+1
     
-j = 0
-for doc in docLabels_2:
-    try:
-        file = open('/Users/AR/Desktop/naturesCall/TOI_Data/actor2/' + doc, 'r').read()
-        data.append(doc_tag(file.lower().split(), [docLabels_2[j]]))
-        gensim_keyterms_prob.append([keywords(file.lower(),words =10, lemmatize = True,scores = True), docLabels_2[j]])
-        gensim_keyterms.append(keywords(file.lower(),words =10, lemmatize = True))
-    except:
-        file = open('/Users/AR/Desktop/naturesCall/TOI_Data/actor2/' + doc, 'r').read()
-        data.append(doc_tag(file.lower().split(), [docLabels_2[j]]))
-        gensim_keyterms_prob.append([[('nan',0),('nan',0),('nan',0),('nan',0),('nan',0),('nan',0),('nan',0),('nan',0),('nan',0),('nan',0)],docLabels_2[j]])
-        gensim_keyterms.append(['nan','nan','nan','nan','nan','nan','nan','nan','nan','nan'])
 
-    j = j+1
 
 
 # In[ ]:
@@ -118,7 +105,6 @@ for epoch in range(10):
 
 g = nx.DiGraph()
 
-h = nx.Graph()
 
 for i in range(len(docLabels)):
     g.add_node(i, actor=docLabels[i][11:17], vector=model.docvecs.doctag_syn0[i], date=docLabels[i][:10], keyword = gensim_keyterms[i].split('\n'), file_name = docLabels[i])
